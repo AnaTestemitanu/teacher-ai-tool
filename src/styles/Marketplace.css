@@ -1,0 +1,70 @@
+.list {
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.market:hover {
+    background: #dde6ed;
+}
+
+.classes-container {
+    display: flex; 
+}
+.market--list {
+    width: calc(100% - 250px);
+    padding-left: 20px; 
+    flex: 1;
+    background: #eaf4fc;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.market--header {
+    display: flex;
+    margin: 2rem 0;
+    justify-content: space-between;
+}
+.market--header h2 {
+    color: #526d82;
+}
+.market--container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+.market--detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align:center;
+    color: #536d82;
+    gap: 10px;
+}
+.market--detail img {
+    width: 150px;
+    height: 100px;
+    border-radius: 20%;
+    margin-top: 10px;
+}
+.purchase-btn {
+    display: inline-block;
+    background-color: #526d82;
+    color: #eaf4fc;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.purchase-btn:hover{
+    background-color: #335c7b;
+}

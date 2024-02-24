@@ -33,8 +33,9 @@
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-    align-items: center;
+    -webkit-box-align: stretch;
+    align-items: stretch; 
+    justify-items: stretch;
 }
 .presentation {
     display: flex;
