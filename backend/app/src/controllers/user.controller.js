@@ -1,25 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
-import simplecrypt from 'simplecrypt';
+import { hashPassword } from '../utils/hashPassword.js';
 
 export default class UserController {
     constructor(userModel) {
         this.userModel = userModel;
     }
 
-    hashPassword(password) {
-        try {
-            const sc = simplecrypt();
-            const digest = sc.encrypt(password);
-            return digest;
-        } catch (error) {
-            console.error('Error hashing password', error);
-            throw error;
-        }
-    }
-
     async createUser(email, password) {
         const id = uuidv4();
-        const pass = this.hashPassword(password);
+        const pass = await hashPassword(password);
         const newUser = await this.userModel.create({ id, email, password: pass });
         return newUser;
     }
@@ -39,5 +28,10 @@ export default class UserController {
             where: { id: userId }
         });
         return deleted;
+    }
+
+    async getUserByEmail(email) {
+        const user = await this.userModel.findOne({ where: { email } });
+        return user;
     }
 }

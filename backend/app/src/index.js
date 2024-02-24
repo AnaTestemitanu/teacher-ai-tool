@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import sequelize from './db/sequelize.js';
 import userRoutes from './routes/user.routes.js';
+import loginRoutes from './routes/login.routes.js';
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(helmet());
 
 app.use('/users', userRoutes);
+app.use('/login', loginRoutes);
 
 const PORT = process.env.NODEJS_LOCAL_PORT || 3000;
 app.listen(PORT, async () => {
