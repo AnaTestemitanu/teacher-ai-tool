@@ -19,6 +19,7 @@
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.9.1",
     "openai": "^4.28.0",
+    "pdfjs-dist": "^4.0.379",
     "pptxgenjs": "^3.12.0",
     "sequelize": "^6.37.1",
     "uuid": "^9.0.1"

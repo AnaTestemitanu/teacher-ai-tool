@@ -47,7 +47,11 @@ const classModel = sequelize.define(
     PdfLink: {
         type: DataTypes.STRING,
         allowNull: true,
-      },
+    },
+    PdfPages: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     timestamps: true,
