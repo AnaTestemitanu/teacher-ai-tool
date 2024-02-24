@@ -18,6 +18,7 @@ services:
     build:
       context: .
       dockerfile: ./app/Dockerfile
+    command: nodemon ./src/index.js
     image: node-mysql-app
     env_file: ./.env
     ports:

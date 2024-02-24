@@ -10,4 +10,6 @@ COPY /app .
 
 EXPOSE 3005
 
+RUN yarn global add nodemon
+
 CMD [ "yarn", "start" ]
