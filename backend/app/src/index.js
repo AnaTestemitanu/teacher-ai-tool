@@ -1,19 +1,17 @@
 import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
 import sequelize from './db/sequelize.js';
-import userModel from './db/models/user.model.js';
+import userRoutes from './routes/user.routes.js';
 
 const app = express();
 
-app.route('/').get(async (req, res) => {
-  try {
-    const users = await userModel.findAll({ logging: console.log });
-    res.json(users);
-  } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).send({ error: 'Internal Server Error' });
-  }
-});
+app.use(express.json());
+app.use(cors());
+app.use(helmet());
+
+app.use('/users', userRoutes);
 
 const PORT = process.env.NODEJS_LOCAL_PORT || 3000;
 app.listen(PORT, async () => {
