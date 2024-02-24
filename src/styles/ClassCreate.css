@@ -1,0 +1,48 @@
+.form-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+.form-container form {
+    flex: 1;
+    background: #eaf4fc;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.form-container form label {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+.form-container form input, 
+.form-container form button {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+.form-container form button {
+    background-color: #0b2a67;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease-in-out; 
+}
+.form-container form button:hover {
+    background-color: #135ddd;
+}
+.form-input-label {
+    font-size: 0.9rem; 
+    color: #05234e;
+    font-weight: 600;
+}
+
+.form-input-text {
+    color: #05234e;
+    font-weight: 600;
+}

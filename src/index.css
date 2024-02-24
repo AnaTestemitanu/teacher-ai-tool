@@ -1,0 +1,10 @@
+@import url('https://fints.googleapis.com/css2?family=Monserrat:wght@200;300;400;500;600;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Monserrat', sans-serif;
+}
+body {
+  background: #e3ebf1;
+  padding: 20px;
+}

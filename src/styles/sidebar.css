@@ -1,0 +1,40 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 2.3rem;
+    height: 100vh;
+    width: 250px; 
+    justify-content: left;
+}
+.logo {
+    text-align: center;
+    padding: 20px;
+    color: #05234e;
+    align-items: center;
+    display: flex;
+    gap:20px;
+}
+.logo-icon {
+    font-size: 1.4rem;
+}
+.menu--list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.menu--list .item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    color: #05234e;
+}
+.menu--list .item:hover {
+    background: #05234e;
+    color: #e3ebf1;
+}

@@ -1,0 +1,99 @@
+.app {
+    display: flex;
+  }
+.content {
+    width: calc(100% - 250px);
+    height: 100vh;
+    flex-grow: 1;
+}
+.content--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header--title {
+    color: #526d82;
+}
+.header--activity {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.search-box {
+    background: #dde6ed;
+    padding: 8px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.search-box input{
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 5px;
+    outline: none;
+}
+.search-box .icon {
+    color: #969393;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.5 ease-in-out;
+}
+.notify {
+    background: #dde6ed;
+    padding: 12px;
+    border-radius: 10px;
+    color: #969393;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5 ease-in-out;
+}
+.notify .icon {
+    font-size: 20px;
+    transition: 0.5 ease-in-out;
+}
+.icon:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+}
+/* card container */
+.card--container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.card {
+    flex: 1;
+    background: #dde6ed;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    transition: 0.5s  ease-in-out;
+}
+.card:hover {
+    transform: scale(1.04);
+    cursor: pointer;
+}
+.card--cover {
+    background: #fff;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 20px;
+    color: #969393;
+}
+.card--title {
+    background: #ffffffc0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #526d82;
+    border-radius: 10px;
+}
