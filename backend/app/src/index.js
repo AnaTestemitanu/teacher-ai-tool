@@ -6,6 +6,7 @@ import sequelize from './db/sequelize.js';
 import userRoutes from './routes/user.routes.js';
 import loginRoutes from './routes/login.routes.js';
 import profileRoutes from './routes/profile.routes.js';
+import classRoutes from './routes/class.routes.js';
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(helmet());
 app.use('/users', userRoutes);
 app.use('/login', loginRoutes);
 app.use('/profile', profileRoutes);
+app.use('/class', classRoutes);
 
 const PORT = process.env.NODEJS_LOCAL_PORT || 3000;
 app.listen(PORT, async () => {

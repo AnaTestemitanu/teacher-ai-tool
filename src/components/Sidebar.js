@@ -31,7 +31,7 @@ const Sidebar = () => {
                 </Link>
                 <Link to="/create-class" className="item">
                 <BiTask className="icon" />
-                Create Link class
+                Create class
                 </Link>
                 <Link to="#" className="item">
                 <BiHistory className="icon" />
