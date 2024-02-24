@@ -1,20 +1,20 @@
 import React from 'react';
-import { BiBarChart, BiMath, BiAward } from 'react-icons/bi';
+import { BiBarChart, BiMath, BiPlanet } from 'react-icons/bi';
 
 const courses = [
     {
-        title: 'one',
+        title: 'Maths',
         icon: <BiMath />
     },
     {
-        title: 'two',
+        title: 'Statistics',
         duration: '2 hours',
         icon: <BiBarChart />
     },
     {
-        title: 'three',
+        title: 'Astronomy',
         duration: '2 hours',
-        icon: <BiAward />
+        icon: <BiPlanet />
     },
 ]
 

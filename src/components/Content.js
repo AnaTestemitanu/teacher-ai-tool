@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentHeader from './ContentHeader';
 import Card from './Card';
-import TeacherList from './TeacherList';
+import TeacherList from './PresentationsList';
 import '../styles/content.css'
 
 
