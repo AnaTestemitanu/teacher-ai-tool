@@ -33,4 +33,11 @@ export default class UserController {
         const user = await this.userModel.findByPk(userId);
         return user;
     }
+
+    async deleteUser(userId) {
+        const deleted = await this.userModel.destroy({
+            where: { id: userId }
+        });
+        return deleted;
+    }
 }
