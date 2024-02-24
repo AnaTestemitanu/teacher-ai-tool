@@ -25,6 +25,15 @@ export default class ProfileController {
     return profile;
   }
 
+  async getProfileByUserId(userId) {
+    const profile = await this.profileModel.findOne({
+      where: {
+        UserId: userId
+      }
+    });
+    return profile;
+  }
+
   async updateProfile(profileId, updatePayload) {
     const [updatedRowsCount] = await this.profileModel.update(updatePayload, {
       where: { id: profileId },

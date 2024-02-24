@@ -132,7 +132,7 @@ export default class PresentationController {
         return combined;
     }
 
-    async generateFile(slides) {
+    async generateFile(slides, classData) {
         const pptx = new pptxgen();
         for (const slide of slides) {
             const slideObj = pptx.addSlide();
@@ -152,8 +152,9 @@ export default class PresentationController {
                 }
             }
           }
-          pptx.writeFile("presentations/Presentation.pptx").then(() => {
-            console.log("Presentation created!");
+          const fileName = `${classData.id}.pptx`;
+          pptx.writeFile(`presentations/${fileName}`).then(() => {
+            console.log(`Presentation ${fileName} created!`);
           });
     }
 }
