@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// [TODO] remove hard code token
 export const createClass = async (formData) => {
   try {
     const response = await axios.post('http://localhost:3005/class', formData, {

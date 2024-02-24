@@ -16,6 +16,7 @@ const ClassCreate = () => {
     ClassAge: '',
     Tons: '',
     ClassGroupName: '',
+    PdfPages: '',
     humour: false,
     analogy: false 
   })
@@ -60,6 +61,10 @@ const ClassCreate = () => {
             <input type="file" name="courseBookPdf" onChange={handleFileChange}/>
         </label>
         <label className="form-input-label">
+            PDF pages(please separate the page numbers with a comma):
+            <input className="form-input-text" type="text" name="PdfPages" onChange={handleInputChange} />
+        </label>
+        <label className="form-input-label">
             Topic:
             <input className="form-input-text" type="text" name="Topic" onChange={handleInputChange} />
         </label>
@@ -74,7 +79,7 @@ const ClassCreate = () => {
         </label>
         <label className="form-input-label">
             Age of class:
-            <input className="form-input-text" type="text" name="ClassAge" onChange={handleInputChange} />
+            <input className="form-input-text" type="number" name="ClassAge" onChange={handleInputChange} />
         </label>
         <div style={{textAlign: 'left'}}>
             <label className="form-input-label">
