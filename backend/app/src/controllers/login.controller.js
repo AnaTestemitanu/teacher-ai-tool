@@ -19,6 +19,7 @@ export default class LoginController {
         return { token };
     }
 
+    // [Tech debt] Do it properly
     async register(email, password, data) {
         const newUser = await this.userModel.create({ email, password });
         const profileData = { UserId: newUser.id, ...data };
