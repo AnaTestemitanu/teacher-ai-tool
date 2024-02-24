@@ -13,7 +13,7 @@ export default class LoginController {
         const isValid = await verifyPassword(password, user.password);
         if (!isValid) return { error: "Invalid password"};
 
-        const token = jwt.sign({ userId: user.id}, 'test', { expiresIn: '5h' })
+        const token = jwt.sign({ userId: user.id}, process.env.JWT_SECRET, { expiresIn: '5h' })
 
         return { token };
     }
