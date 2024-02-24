@@ -41,8 +41,18 @@
     color: #05234e;
     font-weight: 600;
 }
+.form-container form select {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    color: #05234e;
+    font-weight: 600;
+}
 
-.form-input-text {
+.form-input-text,
+.form-container form select
+{
     color: #05234e;
     font-weight: 600;
 }
