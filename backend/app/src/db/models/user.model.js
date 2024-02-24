@@ -4,12 +4,17 @@ import sequelize from '../sequelize.js';
 const userModel = sequelize.define(
     'users', 
     {
-        email: {
-            type: DataTypes.STRING(100),
+        id: {
+            type: DataTypes.STRING,
             allowNull: false,
             primaryKey: true,
+        },
+        email: {
+            type: DataTypes.STRING(100),
+            unique: true,
+            allowNull: false,
             validate: {
-            isEmail: true,
+                isEmail: true,
             },
         },
         password: {

@@ -16,6 +16,7 @@
     "helmet": "^7.1.0",
     "mysql2": "^3.9.1",
     "sequelize": "^6.37.1",
-    "simplecrypt": "^0.1.0"
+    "simplecrypt": "^0.1.0",
+    "uuid": "^9.0.1"
   }
 }

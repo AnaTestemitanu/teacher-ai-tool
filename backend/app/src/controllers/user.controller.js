@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import simplecrypt from 'simplecrypt';
 
 export default class UserController {
@@ -17,13 +18,19 @@ export default class UserController {
     }
 
     async createUser(email, password) {
+        const id = uuidv4();
         const pass = this.hashPassword(password);
-        const newUser = await this.userModel.create({ email, password: pass });
+        const newUser = await this.userModel.create({ id, email, password: pass });
         return newUser;
     }
 
     async getAllUsers() {
         const users = await this.userModel.findAll({ logging: console.log });
         return users;
+    }
+
+    async getUserByID(userId) {
+        const user = await this.userModel.findByPk(userId);
+        return user;
     }
 }
