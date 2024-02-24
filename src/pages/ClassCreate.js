@@ -37,6 +37,7 @@ const ClassCreate = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let tons = "";
+    console.log(classData.humour)
     tons = classData.humour ? tons + "humour," : tons;
     tons = classData.analogy ? tons + "analogy" : tons;
     delete classData.humour;
