@@ -33,23 +33,23 @@ const Sidebar = () => {
                 <BiTask className="icon" />
                 Create class
                 </Link>
-                <Link to="#" className="item">
+                <Link to="/previous-classes" className="item">
                 <BiHistory className="icon" />
                 Previous classes 
                 </Link>
-                <Link to="#" className="item">
+                <Link to="/favourite-slides" className="item">
                 <BiSlideshow className="icon" />
                 Favourite Slides
                 </Link>
-                <Link to="#" className="item">
+                <Link to="/marketplace" className="item">
                 <BiSolidShoppingBags className="icon" />
                 Marketplace
                 </Link>
-                <Link to="#" className="item">
+                <Link to="/ai-chat-assistant" className="item">
                 <BiMessage className="icon" />
                 Chat to AI assistant 
                 </Link>
-                <Link to="#" className="item">
+                <Link to="/support" className="item">
                 <BiHelpCircle className="icon" />
                 Support 
                 </Link>

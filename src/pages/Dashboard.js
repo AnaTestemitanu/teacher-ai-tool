@@ -1,6 +1,3 @@
-import "../styles/sidebar.css"
-import "../styles/dashboard.css"
-import "../styles/content.css"
 import React from 'react';
 import Content from '../components/Content';
 import Profile from '../components/Profile';

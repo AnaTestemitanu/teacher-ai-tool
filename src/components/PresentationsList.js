@@ -12,37 +12,37 @@ const presentations = [
         image: Image1,
         name: 'Presentation of Smth',
         duration: '20 hours lesson',
-        cost: '150'
+        cost: '£150'
     },
     {
       image: Image2,
       name: 'End a presentation',
       duration: '2 hours lesson',
-      cost: '130'
+      cost: '£130'
     },
     {
       image: Image3,
       name: 'Maths Mid School',
       duration: '15 hours lesson',
-      cost: '100'
+      cost: '£100'
    },
     {
       image: Image4,
       name: 'History of English',
       duration: '200 hours lesson',
-      cost: '180'
+      cost: '£180'
     },
     {
       image: Image5,
       name: 'Physics for Kids',
       duration: '240 hours lesson',
-      cost: '10'
+      cost: '£100'
     },
     {
       image: Image6,
       name: 'Chemistry for Adults',
       duration: '60 hours lesson',
-      cost: '1300'
+      cost: '£1300'
     }
 ];
 
@@ -50,12 +50,12 @@ const PresentationList = () => {
   return (
   <div className="presentation--list">
     <div className='list--header'>
-        <h2>Presentations</h2>
+        <h2>Recent Presentations</h2>
         <select>
           <option value="english">English</option>
-          <option value="maths">Maths</option>
-          <option value="physics">Physics</option>
-          <option value="chemistry">Chemistry</option>
+          <option value="maths">Spanish</option>
+          <option value="physics">French</option>
+          <option value="chemistry">Italian</option>
         </select>
     </div>
     <div className='list--container'>
