@@ -1,0 +1,68 @@
+.slides-container {
+    display: flex; 
+}
+.slides--list {
+    width: calc(100% - 250px);
+    padding-left: 20px; 
+    flex: 1;
+    background: #eaf4fc;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+.slides--list h2 {
+    color: #526d82;
+}
+.slide--container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+}
+.grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px; /* You can change this value */
+    height: 300px; /* You can change this value */
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+}
+.grid img {
+    width: 200px;
+    height: 140px;
+    border-radius: 10px;
+}
+.slide-actions {
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    padding: 8px 12px;
+    border: 1px solid #dde6ed;
+    color: #526d82;
+}
+.upload-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 2px solid #dde6ed;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.1);
+    width: 30%; /* adjust as per your need */
+    gap: 10px; /* adjust as per your need */
+}
+.label-upload {
+    font-size: 1.2em;
+    color: #526d82;
+    cursor: pointer;
+    border-bottom: 1px solid #526d82;
+}
