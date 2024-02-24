@@ -27,9 +27,13 @@ router.post("/", authenticateToken, upload.single("courseBookPdf"), async (req, 
     if (req.file) {
       data["PdfLink"] = req.file.originalname;
     }
-    const test = await presentationController.extractTextFromPdf();
-    console.log({ test });
+    const pdfText = presentationController.extractTextFromPdf(); // [Tech debt] Remove hard code return
     const response = await classController.createClass(req.body);
+    const slides = await presentationController.generateSlides(pdfText, response, { MainLanguage: "english" }); // [Tech debt] Remove profile hard code 
+    const keynotes = await presentationController.generateSlideNotes(slides, response, { Age: 30, YearsOfExperience: 10 }) // [Tech debt] Remove profile hard code
+    const images = await presentationController.generateSlideImage(slides);
+    const presentation = presentationController.combine(slides, keynotes, images);
+    await presentationController.generateFile(presentation);
     res.status(201).json(response);
   } catch (error) {
     console.error("Error login user", error);

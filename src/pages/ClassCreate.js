@@ -45,7 +45,7 @@ const ClassCreate = () => {
     delete classData.analogy;
     classData.Tons = tons;
     createClass(classData);
-    navigate('/previousclasses');
+    //navigate('/previousclasses');
   }
 
   return (

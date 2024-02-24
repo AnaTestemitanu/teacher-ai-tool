@@ -10,6 +10,7 @@
   "author": "Vinny-Bass",
   "license": "MIT",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.14.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

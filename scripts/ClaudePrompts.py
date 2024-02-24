@@ -107,3 +107,24 @@ def key_notes_formatter(key_notes):
         key_notes_txt = key_notes_txt + key_note_formatted
     return key_notes_txt
     
+def image_prompt_generator(slide_content):
+    slide_text = []
+    #separating each of the slides
+    for slide in slide_content.split('<slide>'):
+        slide_text.append(slide.split('</slide>')[0] + '\n')
+    #removing contentblock text
+    slide_text = slide_text[1:]
+    image_prompts = []
+    for slide in slide_text:
+        message = client.messages.create(
+            model="claude-2.1",
+            max_tokens=1000,
+            temperature=0,
+            system="",
+            messages=[
+                {"role": "user", "content": f"You are a teacher using a text-to-image generator to create images for teaching slides.\
+                 Turn this slide content {slide} into prompts that will produce a visually engaging context-based image for the slide"}
+            ]
+        )
+        image_prompts.append(message.content)
+    return image_prompts
