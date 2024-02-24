@@ -18,6 +18,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// [Tech debt] pagination
 router.get("/", authenticateToken, async (req, res) => {
   try {
     const users = await userController.getAllUsers();
