@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
+// [Tech debt] Param validation
 app.use('/users', userRoutes);
 app.use('/login', loginRoutes);
 app.use('/profile', profileRoutes);

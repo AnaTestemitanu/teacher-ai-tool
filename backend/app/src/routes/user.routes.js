@@ -52,7 +52,7 @@ router.delete("/:id", authenticateToken, async (req, res) => {
         else
             res.send("User deleted");
     } catch (error) {
-        console.error("Error getting user by ID:", error);
+        console.error("Error deleting user by ID:", error);
         res.status(500).send({ error: "Internal Server Error" });
     }
 });

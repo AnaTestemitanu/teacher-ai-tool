@@ -23,6 +23,7 @@ export default class UserController {
         return user;
     }
 
+    // [Tech debt] Delete profiles cascade
     async deleteUser(userId) {
         const deleted = await this.userModel.destroy({
             where: { id: userId }
@@ -34,4 +35,6 @@ export default class UserController {
         const user = await this.userModel.findOne({ where: { email } });
         return user;
     }
+
+    // [Tech debt] update email and password method
 }
