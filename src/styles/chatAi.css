@@ -2,9 +2,12 @@
     display: flex;
 }
 .chat-content {
-    width: 70%;
+    padding: 30px;
+    width: 80%;
     display: flex;
     flex-direction: column;
+    font-size: 1.5em;
+    color: #0d4876;
 }
 #chat-display {
     padding: 30px;

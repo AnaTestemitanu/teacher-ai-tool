@@ -36,7 +36,7 @@ const Sidebar = () => {
                 </Link>
                 <Link to="/create-class" className={`item ${isActive('/create-class') ? 'active' : ''}`}>
                     <BiTask className="icon" />
-                    Create class
+                    Create a lesson
                 </Link>
                 <Link to="/previous-classes" className={`item ${isActive('/previous-classes') ? 'active' : ''}`}>
                     <BiHistory className="icon" />

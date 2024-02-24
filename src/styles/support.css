@@ -1,0 +1,52 @@
+.support-container {
+    display: flex;
+    padding: 50px;
+}
+
+.support-content {
+    width: 70%;
+    margin-left: auto;
+    font-size: 1.5em;
+    color: #0d4876;
+}
+
+support-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 600px;
+    padding: 50px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+ label {
+    font-size: 2em;
+    color: #526d82;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #dde6ed;
+    border-radius: 5px;
+    font-size: 1.5em;
+    color: #526d82;
+}
+
+button {
+    padding: 10px;
+    background-color: #032c4b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2em;
+}
+
+button:hover {
+    background-color: #a4ccec;
+}
