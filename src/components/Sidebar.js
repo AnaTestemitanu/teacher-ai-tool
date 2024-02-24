@@ -26,7 +26,7 @@ const Sidebar = () => {
         <div className="menu">
             <div className="logo">
                 <BiBookAlt className="logo-icon" />
-                <h2>Turing Teaching</h2>
+                <h2>Turing Teacher</h2>
             </div>
 
             <div className="menu--list">

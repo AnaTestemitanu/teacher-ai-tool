@@ -29,7 +29,7 @@ const Profile = () => {
     <div className='user--profile'>
       <div className='user--detail'>
         <img src={userImage} alt='' />
-        <h3 className='username'>Carlos Sad</h3>
+        <h3 className='username'>Sad Carlos</h3>
         <span className='profession'>Secondary School Teacher</span>
       </div>
       <div className='user-courses'>
