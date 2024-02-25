@@ -31,7 +31,7 @@ router.post("/", authenticateToken, upload.single("courseBookPdf"), async (req, 
       data["PdfLink"] = req.file.originalname;
     }
     const profile = await profileController.getProfileByUserId(req.user.userId);
-    const pdfText = presentationController.extractTextFromPdf(); // [Tech debt] Remove hard code return
+    const pdfText = presentationController.extractTextFromPdf(data.Topic); // [Tech debt] Remove hard code return
     const classData = await classController.createClass(req.body);
     const slides = await presentationController.generateSlides(pdfText, classData, profile);
     const keynotes = await presentationController.generateSlideNotes(slides, classData, profile) // [Tech debt] Remove profile hard code

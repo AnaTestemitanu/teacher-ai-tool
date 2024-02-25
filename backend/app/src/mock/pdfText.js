@@ -46,3 +46,71 @@ measurements of space and time could be made. Two such inertial frames are illus
 S moves in the direction at velocity x v for an observer in S (or S moves in the x direction at velocity for an observer in ). Figures 1-2 and 1-3 illustrate the conceptual differences between inertial and noninertial reference frames. Transformation
 of the position coordinates and the velocity components of S into those of is the
 Galilean transformation, Equations 1-2 and 1-3, respectively`;
+
+export const pdfTextPL = `
+1.1 What Is Philosophy?
+LEARNING OBJECTIVES
+By the end of this section, you will be able to:
+• Identify sages (early philosophers) across historical traditions.
+• Explain the connection between ancient philosophy and the origin of the sciences.
+• Describe philosophy as a discipline that makes coherent sense of a whole.
+• Summarize the broad and diverse origins of philosophy.
+It is difficult to define philosophy. In fact, to do so is itself a philosophical activity, since philosophers are
+attempting to gain the broadest and most fundamental conception of the world as it exists. The world includes
+nature, consciousness, morality, beauty, and social organizations. So the content available for philosophy is
+both broad and deep. Because of its very nature, philosophy considers a range of subjects, and philosophers
+cannot automatically rule anything out. Whereas other disciplines allow for basic assumptions, philosophers
+cannot be bound by such assumptions. This open-endedness makes philosophy a somewhat awkward and
+confusing subject for students. There are no easy answers to the questions of what philosophy studies or how
+one does philosophy. Nevertheless, in this chapter, we can make some progress on these questions by (1)
+looking at past examples of philosophers, (2) considering one compelling definition of philosophy, and (3)
+looking at the way academic philosophers today actually practice philosophy.
+Historical Origins of Philosophy
+One way to begin to understand philosophy is to look at its history. The historical origins of philosophical
+thinking and exploration vary around the globe. The word philosophy derives from ancient Greek, in which the
+philosopher is a lover or pursuer (philia) of wisdom (sophia). But the earliest Greek philosophers were not
+known as philosophers; they were simply known as sages. The sage tradition provides an early glimpse of
+philosophical thought in action. Sages are sometimes associated with mathematical and scientific discoveries
+and at other times with their political impact. What unites these figures is that they demonstrate a willingness
+to be skeptical of traditions, a curiosity about the natural world and our place in it, and a commitment to
+applying reason to understand nature, human nature, and society better. The overview of the sage tradition
+that follows will give you a taste of philosophy’s broad ambitions as well as its focus on complex relations
+between different areas of human knowledge. There are some examples of women who made contributions to
+philosophy and the sage tradition in Greece, India, and China, but these were patriarchal societies that did not
+provide many opportunities for women to participate in philosophical and political discussions.
+The Sages of India, China, Africa, and Greece
+In classical Indian philosophy and religion, sages play a central role in both religious mythology and in the
+practice of passing down teaching and instruction through generations. The Seven Sages, or Saptarishi (seven
+rishis in the Sanskrit language), play an important role in sanatana dharma, the eternal duties that have come
+to be identified with Hinduism but that predate the establishment of the religion. The Seven Sages are partially
+considered wise men and are said to be the authors of the ancient Indian texts known as the Vedas. But they
+are partly mythic figures as well, who are said to have descended from the gods and whose reincarnation
+marks the passing of each age of Manu (age of man or epoch of humanity). The rishis tended to live monastic
+lives, and together they are thought of as the spiritual and practical forerunners of Indian gurus or teachers,
+even up to today. They derive their wisdom, in part, from spiritual forces, but also from tapas, or the
+meditative, ascetic, and spiritual practices they perform to gain control over their bodies and minds. The
+stories of the rishis are part of the teachings that constitute spiritual and philosophical practice in
+contemporary Hinduism.
+Despite the fact that classical Indian culture is patriarchal, women figures play an important role in the earliest
+writings of the Vedic tradition (the classical Indian religious and philosophical tradition). These women figures
+are partly connected to the Indian conception of the fundamental forces of nature—energy, ability, strength,
+effort, and power—as feminine. This aspect of God was thought to be present at the creation of the world. The
+Rig Veda, the oldest Vedic writings, contains hymns that tell the story of Ghosha, a daughter of Rishi Kakshivan,
+who had a debilitating skin condition (probably leprosy) but devoted herself to spiritual practices to learn how
+to heal herself and eventually marry. Another woman, Maitreyi, is said to have married the Rishi Yajnavalkya
+(himself a god who was cast into mortality by a rival) for the purpose of continuing her spiritual training. She
+was a devoted ascetic and is said to have composed 10 of the hymns in the Rig Veda. Additionally, there is a
+famous dialogue between Maitreyi and Yajnavalkya in the Upanishads (another early, foundational collection
+of texts in the Vedic tradition) about attachment to material possessions, which cannot give a person
+happiness, and the achievement of ultimate bliss through knowledge of the Absolute (God).
+Another woman sage named Gargi also participates in a celebrated dialogue with Yajnavalkya on natural
+philosophy and the fundamental elements and forces of the universe. Gargi is characterized as one of the most
+knowledgeable sages on the topic, though she ultimately concedes that Yajnavalkya has greater knowledge. In
+these brief episodes, these ancient Indian texts record instances of key women who attained a level of
+enlightenment and learning similar to their male counterparts. Unfortunately, this early equality between the
+sexes did not last. Over time Indian culture became more patriarchal, confining women to a dependent and
+subservient role. Perhaps the most dramatic and cruel example of the effects of Indian patriarchy was the
+ritual practice of sati, in which a widow would sometimes immolate herself, partly in recognition of the “fact”
+that following the death of her husband, her current life on Earth served no further purpose (Rout 2016).
+Neither a widow’s in-laws nor society recognized her value
+`

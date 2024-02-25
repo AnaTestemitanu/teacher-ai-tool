@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { pdfText } from "../mock/pdfText.js"
+import { pdfText, pdfTextPL } from "../mock/pdfText.js"
 import pptxgen from "pptxgenjs";
 import OpenAI from "openai";
 import axios from 'axios';
@@ -8,22 +8,23 @@ import fs from 'fs';
 export default class PresentationController {
     constructor() {
         this.anthropic = new Anthropic({
-            apiKey: "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"
+            apiKey: "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"
         });
-        this.openai = new OpenAI({ apiKey: "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"});
+        this.openai = new OpenAI({ apiKey: "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"});
         this.classLevel = [
             "lower ability",
             "medium ability",
             "high ability"
         ]
         this.tone = [
-            "Have some humourous moments in the slides, while keeping everything factually accurate",
+            "Have some humorous moments in the slides, while keeping everything factually accurate",
             "Have some humorous moments in the slides, and use occasional useful analogies to help explain concepts, while keeping everything factually correct",
             "Use occasional useful analogies to help explain concepts, while keeping everything factually correct",
         ]
     }
-    extractTextFromPdf() {
-        return pdfText;
+    extractTextFromPdf(theme) {
+        if (theme.toLowerCase() === "physics") return pdfText;
+        return pdfTextPL;
     }
 
     async generateSlides(pdfText, classData, profileData) { 
@@ -32,9 +33,9 @@ export default class PresentationController {
         const classAge = classData.ClassAge;
         const tone = classData.Tons;
         let i = -1;
-        if (tone.includes('humor')) i = 0;
-        if (tone.includes('analogies') && tone.includes('humor')) i = 1;
-        if (tone.includes('analogies')) i = 2;
+        if (tone.includes('humour')) i = 0;
+        if (tone.includes('analogy') && tone.includes('humour')) i = 1;
+        if (tone.includes('analogy')) i = 2;
         const toneDesc = i >= 0 ? this.tone[i] : "";
 
         const message = await this.anthropic.messages.create({
@@ -45,7 +46,7 @@ export default class PresentationController {
             You will be tasked with splitting a large chunk of text into separate slides to build a narrative which will support students in learning the content.\n\
             These slides should start with a title slide and each slide should be separated by XML tags which are labelled with <slide></slide>. \
             You should prioritise all of the important content being included, over reducing the number of slides\
-            You should not introduce or conclude the slides, just output them. Limit to 5 slides`,
+            You should not introduce or conclude the slides, just output them.`,
             messages: [
                 {
                     "role": "user", 
@@ -72,11 +73,6 @@ export default class PresentationController {
 
         const keynotes = [];
         for (const slide of slides) {
-            // console.log(`${slide} Please understand the content in this slide.\
-            // Create a set of notes for a ${age}-year-old teacher with ${yoe} years of experience.\
-            // These notes should help the teacher communicate the content of the slide more effectively to a class of ${classLevel} with ${classAge}-year-olds students.\
-            // The notes can also include relevant exercises for students to complete.\
-            // Skip the preamble.`)
             const message = await this.anthropic.messages.create({
                 model: "claude-2.1",
                 max_tokens: 1000,
