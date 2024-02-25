@@ -1,12 +1,14 @@
 import pptxgen from "pptxgenjs";
 import OpenAI from "openai";
+import axios from 'axios';
+import fs from 'fs';
 
 const slidesString = `Here are 8 slides summarizing the key information from the text:
 
 <slide>
 The Grand Alliance: USA, Soviet Union, and Britain Team Up Against Hitler
 During WWII, these unlikely allies united to defeat their common enemy. But tensions emerged about how to govern post-war Europe.
-<image>The Grand Alliance: USA, Soviet Union, and Britain </image>
+<image>https://oaidalleapiprodscus.blob.core.windows.net/private/org-7OjEzy5e86dAuPBijAI1CNMM/user-kwg4hWVgDbpgLuBi0zMuGGHN/img-PLqXjlsJu75skyhBNVAhGcrS.png?st=2024-02-25T02%3A36%3A07Z&se=2024-02-25T04%3A36%3A07Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-02-24T18%3A04%3A17Z&ske=2024-02-25T18%3A04%3A17Z&sks=b&skv=2021-08-06&sig=DzuEYoRSZhylEqDtMzAJRJktsqy0NT9hzblxtKvFr3I%3D</image>
 </slide>
 
 <slide> 
@@ -65,26 +67,60 @@ const slides = rawSlides.map(slide => {
 slides.slice(1,1);
 
 const pptx = new pptxgen();
-const openai = new OpenAI({ apiKey: "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"});
+const openai = new OpenAI({ apiKey: "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"});
+
+async function downloadImage(imageUrl, outputPath) {
+  try {
+    const response = await axios.get(imageUrl, { responseType: 'stream' });
+    const writer = fs.createWriteStream(outputPath);
+
+    response.data.pipe(writer);
+
+    return new Promise((resolve, reject) => {
+      writer.on('finish', resolve);
+      writer.on('error', reject);
+    });
+  } catch (error) {
+    console.error('Error downloading the image:', error);
+    throw error;
+  }
+}
+
+async function deleteImage(imagePath) {
+  return new Promise((resolve, reject) => {
+    fs.unlink(imagePath, (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(`Image successfully deleted: ${imagePath}`);
+      }
+    });
+  });
+}
 
 for (const slide of slides) {
   const slideObj = pptx.addSlide();
-  slideObj.addText(slide.slide_text, { x: 0.5, y: 0.5, fontSize: 18, color: '000000' });
+  slideObj.addText(slide.slide_text, { x: 0.5, y: 0.5, w: 4, h: 3, fontSize: 18, fontFace: 'Tahoma' });
 
   if (slide.slide_image) {
-    const response = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: slide.slide_image,
-      n: 1,
-      size: "1024x1024",
-    });
-    slideObj.addImage({ path: response.data[0].url, x: 1, y: 1, w: 5, h: 3 });
+    try {
+      // const response = await openai.images.generate({
+      //   model: "dall-e-3",
+      //   prompt: slide.slide_image,
+      //   n: 1,
+      //   size: "1024x1024",
+      // });
+      //console.log(response.data)
+      //await downloadImage(slide.slide_image, "./images/img_1.png");
+      slideObj.addImage({ path: "./images/img_2.png", x: 5, y: 0, w: 5, h: 5.63 });
+      //await deleteImage("./images/test.png");
+    } catch (err) {
+      console.log(err)
+    }
+
   }
 }
 
 pptx.writeFile("Presentation.pptx").then(() => {
   console.log("Presentation created!");
 });
-
-
-console.log(slides);
