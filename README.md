@@ -11,13 +11,21 @@ Teaching has proven to be an overwhelming career, with almost 13% of newly quali
 
 Our solution, the Turing Teacher AI Assistant, aims to reduce the workload on teachers by helping them with class preparation. Our application is designed to automate the class creation process based on the teacher's profile, class topic, reference books, and previous presentations. This assistance in class planning and preparation relieves the workload and stress on teachers.
 
-## Technologies Used
+## Technologies & Dependencies
 
-* Frontend: React.js
-* Backend: Node.js with Express.js
-* AI system: Python-based AI Model, Claude AI API, DALL-E
-* Database: Sequelize.js for MySQL
-* Docker for containerization
+This project leans on several key technologies and APIs.
+
+- **Frontend**: The user interface is built using React.js for a smooth user experience.
+- **Backend**: Node.js with Express.js serves as our robust backend framework.
+- **AI System**: Our AI components are comprised of a custom Python-based AI Model, the Claude AI API, and DALL-E which together power our automations and predictions.
+  - Please note that you will need to add your own API code for Claude AI and DALL-E in the following files:
+    - [scripts/ClaudePrompts.py](./scripts/ClaudePrompts.py)
+    - [src/api/class.api.js](./src/api/class.api.js)
+    - [backend/app/src/controllers/presentation.controller.js](./backend/app/src/controllers/presentation.controller.js)
+- **Database**: Sequelize.js provides a pleasant SQL construct for Node.js, and we use MySQL for our database needs.
+- **Containerization**: Docker helps us keep our environments consistent and deployment seamless.
+
+Make sure you have the proper keys and permissions necessary to use all aspects of this project. For security reasons, sensitive information like API keys and database credentials are not included in this repository.
 
 ## Getting Started
 
