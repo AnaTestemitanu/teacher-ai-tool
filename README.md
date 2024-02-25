@@ -2,7 +2,6 @@
 
 Welcome to the Turing Teacher AI Assistant, a revolutionary tool revolutionizing the way we approach teaching preparation.
 
-![Turing Teacher AI Tool Dashboard Image](Screenshot.png)
 
 ## Problem
 
