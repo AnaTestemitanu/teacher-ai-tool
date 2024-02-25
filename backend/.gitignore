@@ -1,2 +1,4 @@
 .env
 node_modules
+app/presentations/*
+app/images/*

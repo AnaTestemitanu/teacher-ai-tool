@@ -35,14 +35,34 @@ router.post("/", authenticateToken, upload.single("courseBookPdf"), async (req, 
     const classData = await classController.createClass(req.body);
     const slides = await presentationController.generateSlides(pdfText, classData, profile);
     const keynotes = await presentationController.generateSlideNotes(slides, classData, profile) // [Tech debt] Remove profile hard code
-    const images = await presentationController.generateSlideImage(slides);
-    const presentation = presentationController.combine(slides, keynotes, images);
-    await presentationController.generateFile(presentation, classData);
+    const presentation = presentationController.combine(slides, keynotes);
+    await presentationController.generateFile(presentation, classData, profile);
     res.status(201).json(classData);
   } catch (error) {
-    console.error("Error login user", error);
+    console.error("Error creating classes", error);
     res.status(500).send({ error: "Internal Server Error" });
   }
 });
+
+router.get("/", authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const classes = await classController.getClassesByUserId(userId);
+    res.send(classes);
+  } catch (err) {
+    console.error("Error getting classes", error);
+    res.status(500).send({ error: "Internal Server Error" });
+  }
+})
+
+router.get("/download/:filename", (req, res) => {
+  const filename = req.params.filename;
+  const path = `presentations/${filename}`
+  res.download(path, filename, (err) => {
+    if (err) {
+      res.status(500).send('Error downloading the file.');
+    }
+  })
+})
 
 export default router;

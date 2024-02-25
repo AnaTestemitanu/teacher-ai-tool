@@ -2,13 +2,15 @@ import Anthropic from '@anthropic-ai/sdk';
 import { pdfText } from "../mock/pdfText.js"
 import pptxgen from "pptxgenjs";
 import OpenAI from "openai";
+import axios from 'axios';
+import fs from 'fs';
 
 export default class PresentationController {
     constructor() {
         this.anthropic = new Anthropic({
-            apiKey: "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"
+            apiKey: "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"
         });
-        this.openai = new OpenAI({ apiKey: "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"});
+        this.openai = new OpenAI({ apiKey: "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"});
         this.classLevel = [
             "lower ability",
             "medium ability",
@@ -43,7 +45,7 @@ export default class PresentationController {
             You will be tasked with splitting a large chunk of text into separate slides to build a narrative which will support students in learning the content.\n\
             These slides should start with a title slide and each slide should be separated by XML tags which are labelled with <slide></slide>. \
             You should prioritise all of the important content being included, over reducing the number of slides\
-            You should not introduce or conclude the slides, just output them. Limit to 3 slides`,
+            You should not introduce or conclude the slides, just output them. Limit to 5 slides`,
             messages: [
                 {
                     "role": "user", 
@@ -70,6 +72,11 @@ export default class PresentationController {
 
         const keynotes = [];
         for (const slide of slides) {
+            // console.log(`${slide} Please understand the content in this slide.\
+            // Create a set of notes for a ${age}-year-old teacher with ${yoe} years of experience.\
+            // These notes should help the teacher communicate the content of the slide more effectively to a class of ${classLevel} with ${classAge}-year-olds students.\
+            // The notes can also include relevant exercises for students to complete.\
+            // Skip the preamble.`)
             const message = await this.anthropic.messages.create({
                 model: "claude-2.1",
                 max_tokens: 1000,
@@ -82,7 +89,7 @@ export default class PresentationController {
                         "role": "user", 
                         "content": `${slide} Please understand the content in this slide.\
                             Create a set of notes for a ${age}-year-old teacher with ${yoe} years of experience.\
-                            These notes should help the teacher communicate the content of the slide more effectively to a class of ${classLevel} ${classAge}-year-olds.\
+                            These notes should help the teacher communicate the content of the slide more effectively to a class of ${classLevel} with ${classAge}-year-old's students.\
                             The notes can also include relevant exercises for students to complete.\
                             Skip the preamble.`
                     }
@@ -93,64 +100,94 @@ export default class PresentationController {
         return keynotes;
     }
 
-    async generateSlideImage(slides) {
-        const images = [];
-        for (const slide of slides) {
-            const message = await this.anthropic.messages.create({
-                model: "claude-2.1",
-                max_tokens: 1000,
-                temperature: 0,
-                system: "",
-                messages: [
-                    {
-                        "role": "user", 
-                        "content": `You are a teacher using a text-to-image generator to create images for teaching slides.\
-                        Turn this slide content ${slide} into one prompt that will produce a visually engaging context-based image for the slide.\
-                        If you don't feel comfortable generating a prompt from this slide, generate a prompt that you think will be appropriate.\
-                        Skip the preamble.`
-                    }
-                ]
-            });
-            images.push(message.content[0].text)
-        }
-        return images;
-    }
-
-    combine(slides, notes, images) {
+    combine(slides, notes) {
         let combined = [];
 
-        const maxLength = Math.max(slides.length, notes.length, images.length);
+        const maxLength = Math.max(slides.length, notes.length);
     
         for (let i = 0; i < maxLength; i++) {
             combined.push({
                 content: slides[i] || '',
-                note: notes[i] || '',
-                img: images[i] || ''
+                note: notes[i] || ''
             });
         }
     
         return combined;
     }
 
-    async generateFile(slides, classData) {
+    async downloadImage(imageUrl, outputPath) {
+        try {
+          const response = await axios.get(imageUrl, { responseType: 'stream' });
+          const writer = fs.createWriteStream(outputPath);
+      
+          response.data.pipe(writer);
+      
+          return new Promise((resolve, reject) => {
+            writer.on('finish', resolve);
+            writer.on('error', reject);
+          });
+        } catch (error) {
+          console.error('Error downloading the image:', error);
+          throw error;
+        }
+      }
+
+    async generateFile(slides, classData, profileData) {
+        const formattingDict = {
+            0: [[40, 140], [450, 140]],
+            1: [[300, 140], [40, 140]],
+          };
+
         const pptx = new pptxgen();
+        pptx.author = profileData.Name;
+        pptx.subject = classData.Topic;
+        pptx.title = classData.ClassName;
+        let i = 0;
         for (const slide of slides) {
-            const slideObj = pptx.addSlide();
-            slideObj.addText(slide.content, { x: 0.5, y: 0.5, fontSize: 18, color: '000000' });
-          
-            if (slide.img) {
+            let slideObj;
+            if (i === 0)
+            {
+                slideObj = pptx.addSlide({ masterName: "TITLE_SLIDE" });
+
+                const titleStyle = {
+                    x: 0.5,
+                    y: 1.25,
+                    w: '90%',
+                    h: 2,
+                    align: 'center',
+                    fontSize: 44,
+                    fontFace: 'Arial', 
+                    bold: true,
+                    color: 'FFFFFF', 
+                    fill: { color: '0072C6' },
+                    margin: 10
+                };
+            
+                slideObj.addText(classData.ClassName, titleStyle);
+                slideObj.addNotes(slide.note);
+
+                slideObj.background = { fill: 'D9EAD3' };
+            } else {
+                let randomIndex = Math.floor(Math.random() * 2);
+                let widthHeights = formattingDict[randomIndex];
+                slideObj = pptx.addSlide();
+                slideObj.addText(slide.content, { x: 0.5, y: 0.5, w: 4, h: 3, fontSize: 18, fontFace: 'Tahoma' });
+                slideObj.addNotes(slide.note);
+
                 try {
                     const response = await this.openai.images.generate({
                         model: "dall-e-3",
-                        prompt: slide.img,
+                        prompt: `Generate a image to be used with this text in a slide: ${slide.content}`,
                         n: 1,
                         size: "1024x1024",
-                      });
-                      slideObj.addImage({ path: response.data[0].url, x: 1, y: 1, w: 5, h: 3 });
+                    });
+                    await this.downloadImage(response.data[0].url, `images/img_${i}.png`)
+                    slideObj.addImage({ path: `images/img_${i}.png`,  x: 5, y: 0, w: 5, h: 5.63 });
                 } catch (err) {
-                    console.log("Open AI was not able to generate this image")
+                    console.log(err);
                 }
             }
+            i++;
           }
           const fileName = `${classData.id}.pptx`;
           pptx.writeFile(`presentations/${fileName}`).then(() => {

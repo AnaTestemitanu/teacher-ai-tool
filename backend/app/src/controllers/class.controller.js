@@ -9,4 +9,13 @@ export default class ClassController {
         const newClass = await this.classModel.create(data);
         return newClass;
     }
+
+    async getClassesByUserId(userId) {
+        const classes = await this.classModel.findAll({
+            where: {
+              UserId: userId
+            }
+          });
+          return classes;
+    }
 }
