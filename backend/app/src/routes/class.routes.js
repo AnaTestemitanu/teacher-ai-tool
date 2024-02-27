@@ -34,7 +34,7 @@ router.post("/", authenticateToken, upload.single("courseBookPdf"), async (req, 
     const pdfText = presentationController.extractTextFromPdf(data.Topic); // [Tech debt] Remove hard code return
     const classData = await classController.createClass(req.body);
     const slides = await presentationController.generateSlides(pdfText, classData, profile);
-    const keynotes = await presentationController.generateSlideNotes(slides, classData, profile) // [Tech debt] Remove profile hard code
+    const keynotes = await presentationController.generateSlideNotes(slides, classData, profile)
     const presentation = presentationController.combine(slides, keynotes);
     await presentationController.generateFile(presentation, classData, profile);
     res.status(201).json(classData);

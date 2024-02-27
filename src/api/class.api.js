@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTEwMWMwOC1kNDE0LTRkMzYtOGEwMy1hMDBlYWZiZmEzZWMiLCJpYXQiOjE3MDg4Mzk4MTUsImV4cCI6MTcwODg1NzgxNX0.U2ti5ix63dtJrpkX7uv-1z9IGjpyXxKoR5x5WogKRD0"
+const TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTEwMWMwOC1kNDE0LTRkMzYtOGEwMy1hMDBlYWZiZmEzZWMiLCJpYXQiOjE3MDkwNDQwNTEsImV4cCI6MTcwOTA2MjA1MX0.yK2SaXUFKt2XiR1Qcs8fK2hQ9d1Lv5fMoP-0FKqLSsE"
 
 // [TODO] remove hard code token
 export const createClass = async (formData) => {

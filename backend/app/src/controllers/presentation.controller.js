@@ -8,9 +8,9 @@ import fs from 'fs';
 export default class PresentationController {
     constructor() {
         this.anthropic = new Anthropic({
-            apiKey: "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"
+            apiKey: process.env.ANTROPIC_API_KEY
         });
-        this.openai = new OpenAI({ apiKey: "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"});
+        this.openai = new OpenAI({ apiKey: process.env.OPEN_AI_API_KEY });
         this.classLevel = [
             "lower ability",
             "medium ability",
@@ -73,7 +73,7 @@ export default class PresentationController {
 
         const keynotes = [];
         for (const slide of slides) {
-            const message = await this.anthropic.messages.create({
+            const note = {
                 model: "claude-2.1",
                 max_tokens: 1000,
                 temperature: 0,
@@ -90,10 +90,11 @@ export default class PresentationController {
                             Skip the preamble.`
                     }
                 ]
-            });
-            keynotes.push(message.content[0].text)
+            };
+            keynotes.push(note);
         }
-        return keynotes;
+        const result = await this.antropicThreadRun(4, keynotes);
+        return result;
     }
 
     combine(slides, notes) {
@@ -109,6 +110,33 @@ export default class PresentationController {
         }
     
         return combined;
+    }
+
+    async antropicThreadRun(concurrentLimit, prompts) {
+        const results = [];
+        const executing = [];
+
+        const processPrompt = async (prompt) => {
+            const result = await this.anthropic.messages.create(prompt);
+            return result;
+        }
+
+        for (const prompt of prompts) {
+            const promise = processPrompt(prompt);
+            results.push(promise);
+
+            const executingPromise = promise.then(() => {
+                executing.slice(executing.indexOf(executingPromise), 1);
+            });
+
+            executing.push(executingPromise);
+
+            if (executing.length >= concurrentLimit) await Promise.race(executing);
+        }
+
+        await Promise.all(executing);
+
+        return Promise.all(results);
     }
 
     async downloadImage(imageUrl, outputPath) {
