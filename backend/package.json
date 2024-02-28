@@ -1,0 +1,52 @@
+{
+  "name": "teacher-ai-tool",
+  "description": "Teacher AI tool",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint app/ --ext ts",
+    "local": "serverless offline start",
+    "test": "jest --no-cache --runInBand"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.14.1",
+    "axios": "^1.6.7",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.9.1",
+    "openai": "^4.28.0",
+    "pdfjs-dist": "^4.0.379",
+    "pptxgenjs": "^3.12.0",
+    "sequelize": "^6.37.1",
+    "uuid": "^9.0.1",
+    "xss": "^1.0.14"
+  },
+  "devDependencies": {
+    "@serverless/typescript": "^3.0.0",
+    "@types/aws-lambda": "^8.10.101",
+    "@types/jest": "^29.2.2",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/node": "^14.14.25",
+    "@types/uuid": "^9.0.8",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "jest": "^29.3.0",
+    "prettier": "^2.5.1",
+    "serverless": "^3.21.0",
+    "serverless-offline": "^8.3.1",
+    "serverless-plugin-typescript": "^2.1.2",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "5.1.6"
+  }
+}
