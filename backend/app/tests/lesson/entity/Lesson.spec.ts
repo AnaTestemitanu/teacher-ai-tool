@@ -7,7 +7,7 @@ describe('Lesson Entity - unit tests', () => {
     lessonFactory = new LessonFactory();
   });
 
-  it('Should be able to return a lesson from an user', async () => {
+  it('Should be able to create a lesson', async () => {
     const response = await lessonFactory.create({
       userId: 'user-1',
       name: 'group-test',
