@@ -1,10 +1,10 @@
 export type LessonEntity = {
   id: string;
   userId: string;
-  className: string;
-  classAge: number;
-  classLevel: string;
-  classGroupName: string;
+  name: string;
+  age: number;
+  level: string;
+  groupName: string;
   topic: string;
   tons?: string;
   pdfLink?: string;

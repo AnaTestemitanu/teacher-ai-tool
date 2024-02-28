@@ -5,8 +5,8 @@ export default class LessonFactory extends Lesson {
   constructor() {
     super(
       process.env.ENV_NAME !== 'test'
-        ? new FakeLessonDataProvider()
-        : new FakeLessonDataProvider(),
+        ? FakeLessonDataProvider.getInstance()
+        : FakeLessonDataProvider.getInstance(),
     );
   }
 }
