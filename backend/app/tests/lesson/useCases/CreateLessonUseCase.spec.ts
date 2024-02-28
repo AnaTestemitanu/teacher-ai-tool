@@ -19,17 +19,4 @@ describe('Create Lesson Use Case - unit tests', () => {
     });
     expect(response.id).toBeDefined();
   });
-
-  it('Should be able to get a lesson', async () => {
-    const response = await createLessonUseCase.execute({
-      userId: 'user-1',
-      name: 'group-test',
-      age: 10,
-      level: 'high',
-      groupName: 'group-test',
-      pdfPages: '10',
-      topic: 'topic-test',
-    });
-    expect(response.id).toBeDefined();
-  });
 });
