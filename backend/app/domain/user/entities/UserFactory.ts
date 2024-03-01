@@ -1,5 +1,5 @@
 import BcryptCryptoProvider from '../../../providers/Bcrypt/BcryptCryptoProvider';
-import FakeUserDataProvider from '../../../providers/fake/FakeUserDataProvider';
+import FakeUserDataProvider from '../../../providers/Fake/FakeUserDataProvider';
 import User from './User';
 
 export default class UserFactory extends User {

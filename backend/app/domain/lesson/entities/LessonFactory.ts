@@ -1,4 +1,4 @@
-import FakeLessonDataProvider from '../../../providers/fake/FakeLessonDataProvider';
+import FakeLessonDataProvider from '../../../providers/Fake/FakeLessonDataProvider';
 import Lesson from './Lesson';
 
 export default class LessonFactory extends Lesson {
