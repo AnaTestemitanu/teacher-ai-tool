@@ -1,7 +1,7 @@
 import { genSalt, hash } from 'bcrypt';
 import { ICryptoData } from '../../core/ICryptoData';
 
-export default class CryptoJsProvider implements ICryptoData {
+export default class BcryptCryptoProvider implements ICryptoData {
   public async generateSecretKey(): Promise<string> {
     return genSalt();
   }
