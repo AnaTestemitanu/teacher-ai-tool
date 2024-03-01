@@ -1,4 +1,3 @@
-
 export default class Log {
   public static info(message: any) {
     if (process.env.ENV_NAME !== 'test') {

@@ -1,5 +1,5 @@
 import IUseCase from '../../../core/IUseCase';
-import { CreateLessonDTO } from '../data/ILessonData';
+import { CreateLessonDTO } from '../entities/Lesson';
 import { LessonEntity } from '../entities/LessonEntity';
 import LessonFactory from '../entities/LessonFactory';
 

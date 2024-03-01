@@ -11,7 +11,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.14.1",
     "axios": "^1.6.7",
-    "bcryptjs": "^2.4.3",
+    "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.9.1",
@@ -25,6 +25,8 @@
   "devDependencies": {
     "@serverless/typescript": "^3.0.0",
     "@types/aws-lambda": "^8.10.101",
+    "@types/bcrypt": "^5.0.2",
+    "@types/crypto-js": "^4.2.2",
     "@types/jest": "^29.2.2",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^14.14.25",
