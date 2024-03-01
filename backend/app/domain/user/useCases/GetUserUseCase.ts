@@ -2,12 +2,15 @@ import IUseCase from '../../../core/IUseCase';
 import { UserEntity } from '../entities/UserEntity';
 import UserFactory from '../entities/UserFactory';
 
-export type GetUserByIdResponse = Omit<UserEntity, 'password' | 'passwordSalt'>;
+export type GetUserUseCaseResponse = Omit<
+  UserEntity,
+  'password' | 'passwordSalt'
+>;
 
-export default class GetUserByIdUseCase
-  implements IUseCase<string, GetUserByIdResponse | undefined>
+export default class GetUserUseCase
+  implements IUseCase<string, GetUserUseCaseResponse | undefined>
 {
-  async execute(userId: string): Promise<GetUserByIdResponse | undefined> {
+  async execute(userId: string): Promise<GetUserUseCaseResponse | undefined> {
     const userFactory = new UserFactory();
     const user = await userFactory.getUserById(userId);
 

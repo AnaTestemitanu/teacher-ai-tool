@@ -1,15 +1,15 @@
 import UserFactory from '../../../domain/user/entities/UserFactory';
-import GetUserByIdUseCase from '../../../domain/user/useCases/GetUserByIdUseCase';
+import GetUserUseCase from '../../../domain/user/useCases/GetUserUseCase';
 
-let getUserByIdUseCase: GetUserByIdUseCase;
+let getUserUseCase: GetUserUseCase;
 
 describe('Get User By Id Use Case - unit tests', () => {
   beforeEach(() => {
-    getUserByIdUseCase = new GetUserByIdUseCase();
+    getUserUseCase = new GetUserUseCase();
   });
 
   it('Should NOT be able to return an inexisting user ID', async () => {
-    const response = await getUserByIdUseCase.execute('non-existing-user');
+    const response = await getUserUseCase.execute('non-existing-user');
     expect(response).toBeUndefined();
   });
 
@@ -26,7 +26,7 @@ describe('Get User By Id Use Case - unit tests', () => {
       yearsOfExperience: 20,
     });
 
-    const response = await getUserByIdUseCase.execute(user.id);
+    const response = await getUserUseCase.execute(user.id);
     expect(response?.id).toBe(user.id);
   });
 });
