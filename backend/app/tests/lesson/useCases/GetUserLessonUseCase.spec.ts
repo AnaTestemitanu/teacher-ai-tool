@@ -22,6 +22,7 @@ describe('Get User Lesson Use Case - unit tests', () => {
       groupName: 'group-test',
       pdfPages: '10',
       topic: 'topic-test',
+      tons: 'ton-1',
     });
 
     const response = await getUserLessonUseCase.execute('user-1');

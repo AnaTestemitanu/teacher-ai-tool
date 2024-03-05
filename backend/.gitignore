@@ -1,7 +1,9 @@
 .env
 node_modules
-app/presentations/*
-app/images/*
+assets/presentations/*
+!assets/presentations/.gitkeep
+assets/images/*
+!assets/images/.gitkeep
 .esbuild
 node_modules
 jspm_packages

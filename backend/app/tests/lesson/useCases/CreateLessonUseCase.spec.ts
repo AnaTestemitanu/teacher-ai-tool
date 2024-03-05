@@ -1,22 +1,53 @@
 import CreateLessonUseCase from '../../../domain/lesson/useCases/CreateLessonUseCase';
+import UserFactory from '../../../domain/user/entities/UserFactory';
+import CreateLessonFactory from '../../../infra/lesson/factories/CreateLessonFactory';
 
 let createLessonUseCase: CreateLessonUseCase;
+let userFactory: UserFactory;
 
 describe('Create Lesson Use Case - unit tests', () => {
   beforeEach(() => {
-    createLessonUseCase = new CreateLessonUseCase();
+    createLessonUseCase = new CreateLessonFactory();
+    userFactory = new UserFactory();
+  });
+
+  it('Should NOT be able to create a lesson with non-existing user', async () => {
+    await expect(
+      createLessonUseCase.execute({
+        userId: 'invalid-id',
+        name: 'group-test',
+        age: 10,
+        level: 'high',
+        groupName: 'group-test',
+        pdfPages: '10',
+        topic: 'topic-test',
+        tons: 'ton-1',
+      }),
+    ).rejects.toThrow('User does not exist');
   });
 
   it('Should be able to create a lesson', async () => {
+    const user = await userFactory.create({
+      name: 'user',
+      dateOfBirth: '1988-06-10',
+      email: 'test@teste.com',
+      gender: 'male',
+      mainLanguage: 'portuguese',
+      password: '123',
+      yearsOfExperience: 20,
+    });
+
     const response = await createLessonUseCase.execute({
-      userId: 'user-1',
+      userId: user.id,
       name: 'group-test',
       age: 10,
       level: 'high',
       groupName: 'group-test',
       pdfPages: '10',
       topic: 'topic-test',
+      tons: 'ton-1',
     });
+
     expect(response.id).toBeDefined();
   });
 });

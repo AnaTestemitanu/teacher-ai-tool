@@ -16,6 +16,7 @@ describe('Lesson Entity - unit tests', () => {
       groupName: 'group-test',
       pdfPages: '10',
       topic: 'topic-test',
+      tons: 'ton-1',
     });
     expect(response.id).toBeDefined();
   });
@@ -29,6 +30,7 @@ describe('Lesson Entity - unit tests', () => {
       groupName: 'group-test',
       pdfPages: '10',
       topic: 'topic-test',
+      tons: 'ton-1',
     });
 
     const response = await lessonFactory.getLessonByUserId('user-1');
