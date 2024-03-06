@@ -20,7 +20,7 @@ describe('Get User By Id Use Case - unit tests', () => {
       name: 'user-test',
       dateOfBirth: '1988-06-10',
       email: 'test@teste.com',
-      gender: 'male',
+      gender: 'MALE',
       mainLanguage: 'portuguese',
       password: '123',
       yearsOfExperience: 20,

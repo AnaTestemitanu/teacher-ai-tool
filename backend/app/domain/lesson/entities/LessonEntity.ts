@@ -3,10 +3,11 @@ export type LessonEntity = {
   userId: string;
   name: string;
   age: number;
-  level: 'lower' | 'medium' | 'high';
+  level: 'LOWER' | 'MEDIUM' | 'HIGH';
   groupName: string;
   topic: string;
   tons: string;
   pdfLink?: string;
   pdfPages: string;
+  createdAt?: string;
 };

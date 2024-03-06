@@ -14,7 +14,7 @@ describe('Delete User Use Case - unit tests', () => {
       name: 'user-test3',
       dateOfBirth: '1988-06-10',
       email: 'test3@teste.com',
-      gender: 'male',
+      gender: 'MALE',
       mainLanguage: 'portuguese',
       password: '123',
       yearsOfExperience: 20,

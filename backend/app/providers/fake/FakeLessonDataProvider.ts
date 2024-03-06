@@ -15,12 +15,14 @@ export default class FakeLessonDataProviderSingleton implements ILessonData {
     return this.instance;
   }
 
-  async create(lesson: LessonEntity): Promise<LessonEntity> {
+  public async create(lesson: LessonEntity): Promise<LessonEntity> {
     this.lessons.push(lesson);
     return lesson;
   }
 
-  async getLessonByUserId(userId: string): Promise<LessonEntity | undefined> {
+  public async getLessonByUserId(
+    userId: string,
+  ): Promise<LessonEntity | undefined> {
     return this.lessons.find(lesson => lesson.userId === userId);
   }
 }

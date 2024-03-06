@@ -18,7 +18,7 @@ describe('Get User Lesson Use Case - unit tests', () => {
       userId: 'user-1',
       name: 'group-test',
       age: 10,
-      level: 'high',
+      level: 'HIGH',
       groupName: 'group-test',
       pdfPages: '10',
       topic: 'topic-test',

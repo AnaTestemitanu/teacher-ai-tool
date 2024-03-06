@@ -6,6 +6,7 @@ export type UserEntity = {
   passwordSalt: string;
   dateOfBirth: string;
   yearsOfExperience: number;
-  gender: 'male' | 'female' | 'non_binary';
+  gender: 'MALE' | 'FEMALE' | 'NON-BINARY';
   mainLanguage: string;
+  createdAt?: string;
 };

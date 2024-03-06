@@ -1,3 +1,4 @@
+import { v4 as uuidV4 } from 'uuid';
 import { CreateUserDTO } from '../../../domain/user/entities/User';
 import UserFactory from '../../../domain/user/entities/UserFactory';
 
@@ -13,7 +14,7 @@ describe('User Entity - unit tests', () => {
       name: 'user-test',
       dateOfBirth: '1988-06-10',
       email: 'test@teste.com',
-      gender: 'male',
+      gender: 'MALE',
       mainLanguage: 'portuguese',
       password: '123',
       yearsOfExperience: 20,
@@ -31,7 +32,7 @@ describe('User Entity - unit tests', () => {
       name: 'user-test2',
       dateOfBirth: '1988-06-10',
       email: 'test2@teste.com',
-      gender: 'male',
+      gender: 'MALE',
       mainLanguage: 'portuguese',
       password: '123',
       yearsOfExperience: 20,
@@ -44,7 +45,7 @@ describe('User Entity - unit tests', () => {
       name: 'user-test3',
       dateOfBirth: '1988-06-10',
       email: 'test3@teste.com',
-      gender: 'male',
+      gender: 'MALE',
       mainLanguage: 'portuguese',
       password: '123',
       yearsOfExperience: 20,
@@ -54,7 +55,7 @@ describe('User Entity - unit tests', () => {
       name: 'user-test4',
       dateOfBirth: '1988-06-10',
       email: 'test4@teste.com',
-      gender: 'male',
+      gender: 'MALE',
       mainLanguage: 'portuguese',
       password: '123',
       yearsOfExperience: 20,
@@ -69,7 +70,7 @@ describe('User Entity - unit tests', () => {
       name: 'user-test5',
       dateOfBirth: '1988-06-10',
       email: 'test5@teste.com',
-      gender: 'male',
+      gender: 'MALE',
       mainLanguage: 'portuguese',
       password: '123',
       yearsOfExperience: 20,
@@ -84,7 +85,7 @@ describe('User Entity - unit tests', () => {
       name: 'user-test6',
       dateOfBirth: '1988-06-10',
       email: 'test6@teste.com',
-      gender: 'male',
+      gender: 'MALE',
       mainLanguage: 'portuguese',
       password: '123',
       yearsOfExperience: 20,
@@ -95,7 +96,7 @@ describe('User Entity - unit tests', () => {
   });
 
   it('Should NOT be able to delete an user that does not exists', async () => {
-    await expect(userFactory.delete('not-exists-id')).rejects.toThrow(
+    await expect(userFactory.delete(uuidV4())).rejects.toThrow(
       'User does not exist',
     );
   });
@@ -105,7 +106,7 @@ describe('User Entity - unit tests', () => {
       name: 'user-test7',
       dateOfBirth: '1988-06-10',
       email: 'test7@teste.com',
-      gender: 'male',
+      gender: 'MALE',
       mainLanguage: 'portuguese',
       password: '123',
       yearsOfExperience: 20,
@@ -119,7 +120,7 @@ describe('User Entity - unit tests', () => {
   });
 
   it('Should NOT be able to delete an user that does not exists', async () => {
-    await expect(userFactory.delete('not-exists-id')).rejects.toThrow(
+    await expect(userFactory.delete(uuidV4())).rejects.toThrow(
       'User does not exist',
     );
   });
@@ -138,7 +139,7 @@ describe('User Entity - unit tests', () => {
       name: 'user-test8',
       dateOfBirth: '1988-06-10',
       email: 'test8@teste.com',
-      gender: 'male',
+      gender: 'MALE',
       mainLanguage: 'portuguese',
       password: '123',
       yearsOfExperience: 20,
@@ -158,7 +159,7 @@ describe('User Entity - unit tests', () => {
       name: 'user-test9',
       dateOfBirth: '1988-06-10',
       email: 'test9@teste.com',
-      gender: 'male',
+      gender: 'MALE',
       mainLanguage: 'portuguese',
       password: '123',
       yearsOfExperience: 20,
