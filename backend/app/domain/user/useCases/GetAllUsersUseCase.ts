@@ -21,6 +21,7 @@ export default class GetAllUsersUseCase
           gender: user.gender,
           mainLanguage: user.mainLanguage,
           yearsOfExperience: user.yearsOfExperience,
+          createdAt: user.createdAt ? user.createdAt : undefined,
         };
       });
     }

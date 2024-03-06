@@ -1,5 +1,6 @@
-import { registerEvent } from './infra/findmcserver/handler/registerEventHandler';
-import { exportDataConsumer } from './infra/findmcserver/handler/exportDataConsumerHandler';
-import { sendEventsToQueue } from './infra/findmcserver/handler/sendEventsToQueueHandler';
+import { createLesson } from './infra/lesson/handlers/createLessonHandler';
+import { getUserLesson } from './infra/lesson/handlers/getUserLessonHandler';
+import { createUser } from './infra/user/handlers/createUserHandler';
+import { getUser } from './infra/user/handlers/getUserHandler';
 
-export { registerEvent, exportDataConsumer, sendEventsToQueue };
+export { createLesson, getUserLesson, createUser, getUser };

@@ -7,11 +7,11 @@ export default abstract class PostgresBase {
 
   constructor() {
     const conf: any = {
-      host: '127.0.0.1',
-      port: 5432,
-      user: 'postgres',
-      password: '12345678',
-      database: 'teacher-ai',
+      host: process.env.PS_HOST,
+      port: Number(process.env.PS_PORT),
+      user: process.env.PS_USER,
+      password: process.env.PS_PASSWORD,
+      database: process.env.PS_DATABASE,
       allowExitOnIdle: true,
       idle_in_transaction_session_timeout: 1,
       idleTimeoutMillis: 1000,

@@ -14,8 +14,7 @@ export default class AntropicPresentationProvider extends LessonPresentation {
   constructor() {
     super();
     this.anthropic = new Anthropic({
-      apiKey:
-        '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',
+      apiKey: String(process.env.ANTROPIC_API_KEY),
     });
   }
 

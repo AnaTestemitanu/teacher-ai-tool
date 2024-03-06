@@ -1,0 +1,73 @@
+org: tmaradei
+app: teacher-ai
+service: teacher-ai
+frameworkVersion: '3'
+package:
+  individually: true
+  excludeDevDependencies: true
+  exclude:
+    - "app/tests/**"
+provider:
+  name: aws
+  stage: ${opt:stage, 'local'}
+  runtime: nodejs${file(config/env.${opt:stage, 'local'}.json):NODE_RUNTIME}.x
+  region: us-east-1
+  versionFunctions: false
+  environment:
+    ENV_NAME: ${file(config/env.${opt:stage, 'local'}.json):ENV_NAME}
+    AUTH_SECRET_KEY: ${file(config/env.${opt:stage, 'local'}.json):AUTH_SECRET_KEY}
+    ANTROPIC_API_KEY: ${file(config/env.${opt:stage, 'local'}.json):ANTROPIC_API_KEY}
+    OPEN_AI_API_KEY: ${file(config/env.${opt:stage, 'local'}.json):OPEN_AI_API_KEY}
+    PS_HOST: ${file(config/env.${opt:stage, 'local'}.json):PS_HOST}
+    PS_PORT: ${file(config/env.${opt:stage, 'local'}.json):PS_PORT}
+    PS_USER: ${file(config/env.${opt:stage, 'local'}.json):PS_USER}
+    PS_PASSWORD: ${file(config/env.${opt:stage, 'local'}.json):PS_PASSWORD}
+    PS_DATABASE: ${file(config/env.${opt:stage, 'local'}.json):PS_DATABASE}
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+functions:
+  createLesson:
+    handler: app/handler.createLesson
+    name: TeacherAI-createLesson
+    description: Create a Lesson
+    memorySize: 128
+    timeout: 30
+    events:
+      - http:
+          path: lessons
+          method: post
+          cors: true
+  getUserLesson:
+    handler: app/handler.getUserLesson
+    name: TeacherAI-getUserLesson
+    description: Get User's Lesson
+    memorySize: 128
+    timeout: 30
+    events:
+      - http:
+          path: lessons/users/{userId}
+          method: get
+          cors: true
+  createUser:
+    handler: app/handler.createUser
+    name: TeacherAI-createUser
+    description: Create an User
+    memorySize: 128
+    timeout: 30
+    events:
+      - http:
+          path: users
+          method: post
+          cors: true
+  getUser:
+    handler: app/handler.getUser
+    name: TeacherAI-getUser
+    description: Return an User by Id
+    memorySize: 128
+    timeout: 30
+    events:
+      - http:
+          path: users/{userId}
+          method: get
+          cors: true

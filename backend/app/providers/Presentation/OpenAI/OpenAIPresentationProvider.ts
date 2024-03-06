@@ -14,7 +14,7 @@ export default class OpenAIPresentationProvider extends LessonPresentation {
   constructor() {
     super();
     this.openai = new OpenAI({
-      apiKey: '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',
+      apiKey: String(process.env.OPEN_AI_API_KEY),
     });
   }
 
