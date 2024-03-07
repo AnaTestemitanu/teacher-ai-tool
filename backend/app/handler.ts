@@ -1,4 +1,5 @@
 import { createLesson } from './infra/lesson/handlers/createLessonHandler';
+import { createLessonPresentation } from './infra/lesson/handlers/createLessonPresentationHandler';
 import { getUserLesson } from './infra/lesson/handlers/getUserLessonHandler';
 import { createUser } from './infra/user/handlers/createUserHandler';
 import { getUser } from './infra/user/handlers/getUserHandler';
@@ -9,6 +10,7 @@ import { validateUserCredentials } from './infra/user/handlers/validateUserCrede
 
 export {
   createLesson,
+  createLessonPresentation,
   getUserLesson,
   createUser,
   getUser,

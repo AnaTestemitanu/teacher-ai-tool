@@ -1,0 +1,28 @@
+version: '3.8'
+
+services: 
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "12345678"
+      POSTGRES_DB: "teacher-ai"
+    ports:
+      - "5432:5432"
+    volumes: 
+      - db_data:/var/lib/postgresql/data
+  elasticmq:
+    image: softwaremill/elasticmq:latest
+    container_name: elasticmq_queue
+    ports:
+      - "9324:9324"
+      - "9325:9325"
+    volumes:
+      - ./elasticmq.conf:/opt/elasticmq.conf
+volumes: 
+  db_data:
+networks:
+  default:
+    driver: bridge

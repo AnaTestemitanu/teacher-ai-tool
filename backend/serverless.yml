@@ -18,13 +18,24 @@ provider:
     AUTH_SECRET_KEY: ${file(config/env.${opt:stage, 'local'}.json):AUTH_SECRET_KEY}
     ANTROPIC_API_KEY: ${file(config/env.${opt:stage, 'local'}.json):ANTROPIC_API_KEY}
     OPEN_AI_API_KEY: ${file(config/env.${opt:stage, 'local'}.json):OPEN_AI_API_KEY}
+    PRESENTATION_QUEUE_INFO: ${file(config/env.${opt:stage, 'local'}.json):PRESENTATION_QUEUE_INFO}
     PS_HOST: ${file(config/env.${opt:stage, 'local'}.json):PS_HOST}
     PS_PORT: ${file(config/env.${opt:stage, 'local'}.json):PS_PORT}
     PS_USER: ${file(config/env.${opt:stage, 'local'}.json):PS_USER}
     PS_PASSWORD: ${file(config/env.${opt:stage, 'local'}.json):PS_PASSWORD}
     PS_DATABASE: ${file(config/env.${opt:stage, 'local'}.json):PS_DATABASE}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - sqs:SendMessage
+            - sqs:DeleteMessage
+            - sqs:ReceiveMessage
+          Resource: arn:aws:sqs:${self:provider.region}:*:PresentationQueue
 plugins:
   - serverless-plugin-typescript
+  - serverless-offline-sqs
   - serverless-offline
 functions:
   createLesson:
@@ -49,6 +60,18 @@ functions:
           path: lessons/users/{userId}
           method: get
           cors: true
+  createLessonPresentation:
+    handler: app/handler.createLessonPresentation
+    name: TeacherAI-createLessonPresentation
+    description: Create Lesson Presentation
+    memorySize: 1024
+    timeout: 900
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - PresentationQueue
+              - Arn
   createUser:
     handler: app/handler.createUser
     name: TeacherAI-createUser
@@ -107,7 +130,7 @@ functions:
   validateUserCredentials:
     handler: app/handler.validateUserCredentials
     name: TeacherAI-validateUserCredentials
-    description: Validate User's Credentials
+    description: Validate User Credentials
     memorySize: 128
     timeout: 30
     events:
@@ -115,3 +138,19 @@ functions:
           path: users/credentials
           method: post
           cors: true
+resources:
+  Resources:
+    PresentationQueue:
+      Type: 'AWS::SQS::Queue'
+      Properties:
+        QueueName: 'PresentationQueue'
+        VisibilityTimeout: 900
+custom:
+  serverless-offline-sqs:
+    autoCreate: false
+    apiVersion: '2012-11-05'
+    endpoint: http://0.0.0.0:9324
+    region: us-east-1
+    accessKeyId: root
+    secretAccessKey: root
+    skipCacheInvalidation: false
