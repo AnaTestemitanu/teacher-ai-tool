@@ -40,11 +40,4 @@ export default abstract class PostgresBase {
     }
     return data;
   }
-
-  protected trimText(data: string | undefined): string | undefined {
-    if (typeof data === 'string') {
-      return data.substring(0, 7500);
-    }
-    return data;
-  }
 }
