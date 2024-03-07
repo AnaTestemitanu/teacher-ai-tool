@@ -28,7 +28,7 @@ describe('Validate User Credentials Use Case - unit tests', () => {
       email: 'test@teste.com',
       gender: 'MALE',
       mainLanguage: 'portuguese',
-      password: '123',
+      password: 'Teste@123',
       yearsOfExperience: 20,
     });
 
@@ -48,13 +48,13 @@ describe('Validate User Credentials Use Case - unit tests', () => {
       email: 'test2@teste.com',
       gender: 'MALE',
       mainLanguage: 'portuguese',
-      password: '123',
+      password: 'Teste@123',
       yearsOfExperience: 20,
     });
 
     const userToken = await validateUserCredentialsUseCase.execute({
       email: user.email,
-      password: '123',
+      password: 'Teste@123',
     });
 
     expect(userToken.token).toBeDefined();

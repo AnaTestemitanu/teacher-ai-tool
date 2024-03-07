@@ -71,3 +71,47 @@ functions:
           path: users/{userId}
           method: get
           cors: true
+  getUsers:
+    handler: app/handler.getUsers
+    name: TeacherAI-getUsers
+    description: Return all Users
+    memorySize: 128
+    timeout: 30
+    events:
+      - http:
+          path: users
+          method: get
+          cors: true
+  getUserByEmail:
+    handler: app/handler.getUserByEmail
+    name: TeacherAI-getUserByEmail
+    description: Return an User by Email
+    memorySize: 128
+    timeout: 30
+    events:
+      - http:
+          path: users/email/{email}
+          method: get
+          cors: true
+  deleteUser:
+    handler: app/handler.deleteUser
+    name: TeacherAI-deleteUser
+    description: Delete an User
+    memorySize: 128
+    timeout: 30
+    events:
+      - http:
+          path: users/{userId}
+          method: delete
+          cors: true
+  validateUserCredentials:
+    handler: app/handler.validateUserCredentials
+    name: TeacherAI-validateUserCredentials
+    description: Validate User's Credentials
+    memorySize: 128
+    timeout: 30
+    events:
+      - http:
+          path: users/credentials
+          method: post
+          cors: true

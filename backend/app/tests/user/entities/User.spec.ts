@@ -9,7 +9,7 @@ describe('User Entity - unit tests', () => {
     userFactory = new UserFactory();
   });
 
-  it('Should NOT be able to create a user with existing email', async () => {
+  it('Should NOT be able to create an user with invalid password', async () => {
     const userData: CreateUserDTO = {
       name: 'user-test',
       dateOfBirth: '1988-06-10',
@@ -20,6 +20,70 @@ describe('User Entity - unit tests', () => {
       yearsOfExperience: 20,
     };
 
+    await expect(userFactory.create(userData)).rejects.toThrow(
+      'Password must be at least 8 characters long',
+    );
+
+    await expect(
+      userFactory.create({ ...userData, password: '12345678' }),
+    ).rejects.toThrow('Password must contain at least one uppercase letter');
+
+    await expect(
+      userFactory.create({ ...userData, password: 'aaaaaaaa' }),
+    ).rejects.toThrow('Password must contain at least one uppercase letter');
+
+    await expect(
+      userFactory.create({ ...userData, password: 'Aaaaaaaa' }),
+    ).rejects.toThrow('Password must contain at least one number');
+
+    await expect(
+      userFactory.create({ ...userData, password: 'A1aaaaaa' }),
+    ).rejects.toThrow('Password must contain at least one special character');
+  });
+
+  it('Should NOT be able to create an user with invalid date of birth', async () => {
+    const userData: CreateUserDTO = {
+      name: 'user-test',
+      dateOfBirth: 'aaaaaa',
+      email: 'test@teste.com',
+      gender: 'MALE',
+      mainLanguage: 'portuguese',
+      password: 'Teste@123',
+      yearsOfExperience: 20,
+    };
+
+    const error = 'Date of birth must be in the format YYYY-MM-DD';
+
+    await expect(userFactory.create(userData)).rejects.toThrow(error);
+
+    await expect(
+      userFactory.create({ ...userData, dateOfBirth: 'aaaa-aa-aa' }),
+    ).rejects.toThrow(error);
+
+    await expect(
+      userFactory.create({ ...userData, dateOfBirth: '1988-aa-aa' }),
+    ).rejects.toThrow(error);
+
+    await expect(
+      userFactory.create({ ...userData, dateOfBirth: '1988-10-aa' }),
+    ).rejects.toThrow(error);
+
+    await expect(
+      userFactory.create({ ...userData, dateOfBirth: '1988-10-0a' }),
+    ).rejects.toThrow(error);
+  });
+
+  it('Should NOT be able to create an user with existing email', async () => {
+    const userData: CreateUserDTO = {
+      name: 'user-test',
+      dateOfBirth: '1988-06-10',
+      email: 'test@teste.com',
+      gender: 'MALE',
+      mainLanguage: 'portuguese',
+      password: 'Teste@123',
+      yearsOfExperience: 20,
+    };
+
     await userFactory.create(userData);
 
     await expect(userFactory.create(userData)).rejects.toThrow(
@@ -27,14 +91,14 @@ describe('User Entity - unit tests', () => {
     );
   });
 
-  it('Should be able to create a user', async () => {
+  it('Should be able to create an user', async () => {
     const user = await userFactory.create({
       name: 'user-test2',
       dateOfBirth: '1988-06-10',
       email: 'test2@teste.com',
       gender: 'MALE',
       mainLanguage: 'portuguese',
-      password: '123',
+      password: 'Teste@123',
       yearsOfExperience: 20,
     });
     expect(user.id).toBeDefined();
@@ -47,7 +111,7 @@ describe('User Entity - unit tests', () => {
       email: 'test3@teste.com',
       gender: 'MALE',
       mainLanguage: 'portuguese',
-      password: '123',
+      password: 'Teste@123',
       yearsOfExperience: 20,
     });
 
@@ -57,7 +121,7 @@ describe('User Entity - unit tests', () => {
       email: 'test4@teste.com',
       gender: 'MALE',
       mainLanguage: 'portuguese',
-      password: '123',
+      password: 'Teste@123',
       yearsOfExperience: 20,
     });
 
@@ -72,7 +136,7 @@ describe('User Entity - unit tests', () => {
       email: 'test5@teste.com',
       gender: 'MALE',
       mainLanguage: 'portuguese',
-      password: '123',
+      password: 'Teste@123',
       yearsOfExperience: 20,
     });
 
@@ -87,7 +151,7 @@ describe('User Entity - unit tests', () => {
       email: 'test6@teste.com',
       gender: 'MALE',
       mainLanguage: 'portuguese',
-      password: '123',
+      password: 'Teste@123',
       yearsOfExperience: 20,
     });
 
@@ -108,7 +172,7 @@ describe('User Entity - unit tests', () => {
       email: 'test7@teste.com',
       gender: 'MALE',
       mainLanguage: 'portuguese',
-      password: '123',
+      password: 'Teste@123',
       yearsOfExperience: 20,
     });
 
@@ -141,7 +205,7 @@ describe('User Entity - unit tests', () => {
       email: 'test8@teste.com',
       gender: 'MALE',
       mainLanguage: 'portuguese',
-      password: '123',
+      password: 'Teste@123',
       yearsOfExperience: 20,
     });
 
@@ -161,13 +225,13 @@ describe('User Entity - unit tests', () => {
       email: 'test9@teste.com',
       gender: 'MALE',
       mainLanguage: 'portuguese',
-      password: '123',
+      password: 'Teste@123',
       yearsOfExperience: 20,
     });
 
     const isValidUserCredentials = await userFactory.isValidUserCredentials(
       user.email,
-      '123',
+      'Teste@123',
     );
 
     expect(isValidUserCredentials).toBe(true);

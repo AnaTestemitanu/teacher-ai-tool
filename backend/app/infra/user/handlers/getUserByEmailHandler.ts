@@ -4,7 +4,7 @@ import { MessageUtil } from '../../utils/MessageUtil';
 import { isValidToken } from '../../middlewares/auth';
 import Log from '../../../core/Log';
 
-export const getUser: Handler = async (
+export const getUserByEmail: Handler = async (
   event: any,
   context: any,
   callback: any,
@@ -25,12 +25,14 @@ export const getUser: Handler = async (
       return;
     }
 
-    if (!event.pathParameters?.userId) {
+    if (!event.pathParameters?.email) {
       callback(null, MessageUtil.error(401, 'Unauthorized'));
     }
 
     const userController = new UserController();
-    const response = await userController.getUser(event.pathParameters?.userId);
+    const response = await userController.getByEmail(
+      event.pathParameters?.email,
+    );
 
     if (response?.id) {
       callback(null, MessageUtil.success(response));

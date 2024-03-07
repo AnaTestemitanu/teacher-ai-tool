@@ -10,6 +10,7 @@ export const getUserLesson: Handler = async (
   callback: any,
 ) => {
   context.callbackWaitsForEmptyEventLoop = false;
+
   try {
     if (!event?.headers?.Authorization) {
       callback(null, MessageUtil.error(401, 'Unauthorized'));

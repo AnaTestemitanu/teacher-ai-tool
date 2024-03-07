@@ -5,6 +5,11 @@ import { ICryptoData } from '../../../core/ICryptoData';
 
 export type CreateUserDTO = Omit<UserEntity, 'id' | 'passwordSalt'>;
 
+type PasswordValidationResponse = {
+  valid: boolean;
+  error?: string;
+};
+
 export default abstract class User {
   constructor(
     private userDataProvider: IUserData,
@@ -16,6 +21,13 @@ export default abstract class User {
 
     if (emailAlreadyExists?.email) {
       throw new Error('This user aready exists');
+    }
+
+    const { valid, error } = this.isValidPassword(data.password);
+    if (!valid) throw new Error(error);
+
+    if (!this.isValidDateOfBirth(data.dateOfBirth)) {
+      throw new Error('Date of birth must be in the format YYYY-MM-DD');
     }
 
     const passwordSalt = await this.gerenatePasswordSalt();
@@ -81,5 +93,42 @@ export default abstract class User {
     } while (passwordSaltExists);
 
     return passwordSalt;
+  }
+
+  private isValidPassword(password: string): PasswordValidationResponse {
+    if (password.length < 8) {
+      return {
+        valid: false,
+        error: 'Password must be at least 8 characters long',
+      };
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      return {
+        valid: false,
+        error: 'Password must contain at least one uppercase letter',
+      };
+    }
+
+    if (!/\d/.test(password)) {
+      return {
+        valid: false,
+        error: 'Password must contain at least one number',
+      };
+    }
+
+    if (!/[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(password)) {
+      return {
+        valid: false,
+        error: 'Password must contain at least one special character',
+      };
+    }
+
+    return { valid: true };
+  }
+
+  private isValidDateOfBirth(dateOfBirth: string): boolean {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateOfBirth)) return false;
+    return true;
   }
 }

@@ -1,10 +1,11 @@
 import { Handler } from 'aws-lambda';
+import Joi from 'joi';
 import UserController from '../controllers/UserController';
 import { MessageUtil } from '../../utils/MessageUtil';
 import { isValidToken } from '../../middlewares/auth';
 import Log from '../../../core/Log';
 
-export const getUser: Handler = async (
+export const validateUserCredentials: Handler = async (
   event: any,
   context: any,
   callback: any,
@@ -25,21 +26,34 @@ export const getUser: Handler = async (
       return;
     }
 
-    if (!event.pathParameters?.userId) {
-      callback(null, MessageUtil.error(401, 'Unauthorized'));
+    let formattedBody;
+
+    if (event.body) {
+      formattedBody = JSON.parse(event.body);
     }
 
-    const userController = new UserController();
-    const response = await userController.getUser(event.pathParameters?.userId);
+    const schema = Joi.object({
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    });
 
-    if (response?.id) {
-      callback(null, MessageUtil.success(response));
+    const { error } = schema.validate(formattedBody);
+
+    if (error) {
+      callback(null, MessageUtil.error(400, error.details));
       return;
     }
 
-    callback(null, MessageUtil.error(400, 'Not found'));
+    const userController = new UserController();
+
+    const response = await userController.validateLogin({
+      email: formattedBody.email,
+      password: formattedBody.password,
+    });
+
+    callback(null, MessageUtil.success(response));
   } catch (err: any) {
     Log.error(err);
-    callback(null, MessageUtil.error(400, err.message));
+    callback(null, MessageUtil.error(401, 'Unauthorized'));
   }
 };

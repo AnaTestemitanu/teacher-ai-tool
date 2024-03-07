@@ -4,7 +4,7 @@ import { MessageUtil } from '../../utils/MessageUtil';
 import { isValidToken } from '../../middlewares/auth';
 import Log from '../../../core/Log';
 
-export const getUser: Handler = async (
+export const getUsers: Handler = async (
   event: any,
   context: any,
   callback: any,
@@ -25,19 +25,9 @@ export const getUser: Handler = async (
       return;
     }
 
-    if (!event.pathParameters?.userId) {
-      callback(null, MessageUtil.error(401, 'Unauthorized'));
-    }
-
     const userController = new UserController();
-    const response = await userController.getUser(event.pathParameters?.userId);
-
-    if (response?.id) {
-      callback(null, MessageUtil.success(response));
-      return;
-    }
-
-    callback(null, MessageUtil.error(400, 'Not found'));
+    const response = await userController.getAllUsers();
+    callback(null, MessageUtil.success(response));
   } catch (err: any) {
     Log.error(err);
     callback(null, MessageUtil.error(400, err.message));

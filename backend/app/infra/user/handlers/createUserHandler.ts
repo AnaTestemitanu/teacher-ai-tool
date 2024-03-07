@@ -11,6 +11,7 @@ export const createUser: Handler = async (
   callback: any,
 ) => {
   context.callbackWaitsForEmptyEventLoop = false;
+
   try {
     if (!event?.headers?.Authorization) {
       callback(null, MessageUtil.error(401, 'Unauthorized'));
@@ -34,22 +35,13 @@ export const createUser: Handler = async (
     const schema = Joi.object({
       name: Joi.string().required(),
       email: Joi.string().email().required(),
-      password: Joi.string()
-        .required()
-        .min(8)
-        .regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[_!@#$%^&*])[A-Za-z\d_!@#$%^&*]{8,}$/)
-        .messages({
-          'string.min': 'Password must be at least 8 characters long',
-          'string.pattern.base':
-            'Password must contain at least one uppercase letter, one number, and one special character',
-        }),
+      password: Joi.string().required().min(8),
       dateOfBirth: Joi.string()
         .required()
         .regex(/^\d{4}-\d{2}-\d{2}$/)
         .messages({
           'string.pattern.base':
             'Date of birth must be in the format YYYY-MM-DD',
-          'string.isoDate': 'Date of birth must be a valid ISO date',
         }),
       yearsOfExperience: Joi.number().required(),
       gender: Joi.string().valid('MALE', 'FEMALE', 'NON-BINARY').required(),
@@ -63,8 +55,8 @@ export const createUser: Handler = async (
       return;
     }
 
-    const UuerController = new UserController();
-    const response = await UuerController.create(formattedBody);
+    const userController = new UserController();
+    const response = await userController.create(formattedBody);
     callback(null, MessageUtil.success(response));
   } catch (err: any) {
     Log.error(err);

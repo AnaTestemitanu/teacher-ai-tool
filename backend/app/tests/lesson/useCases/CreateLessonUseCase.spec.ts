@@ -33,7 +33,7 @@ describe('Create Lesson Use Case - unit tests', () => {
       email: 'test@teste.com',
       gender: 'MALE',
       mainLanguage: 'portuguese',
-      password: '123',
+      password: 'Teste@123',
       yearsOfExperience: 20,
     });
 
